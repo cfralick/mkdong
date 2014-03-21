@@ -15,12 +15,15 @@ __version__ = '5.0'
 
 MAXLEN = os.environ.get('MEGADONG') or 40
 
+# static immutable penis parts
 BALLS = '( )/( )'
 HEAD = 'D'
 CLIMAX='~~~~'
 
+
 def mkdong(length, climax=None):
     """Print a dong of ``length`` length."""
+    
     if not isinstance(length, int):
         raise TypeError("error: %s is not a valid length" % length)
     elif length > MAXLEN:
@@ -32,6 +35,7 @@ def mkdong(length, climax=None):
     for i in xrange(length):
         shaft.append('/')
     dong = [BALLS, ''.join(shaft), HEAD]
+    
     if climax:
         dong.append(CLIMAX)
 
@@ -60,7 +64,6 @@ def main():
                         version='%(prog)s ' + __version__,
                         help='print version and exit')
     
-    
     dong_args = parser.parse_args()
     donglen = dong_args.length
     climax = dong_args.climax
@@ -73,7 +76,3 @@ def main():
         sys.exit(str(ronjeremy))
     else:
         os.system('echo "%s"' % dong)
-
-
-if __name__ == '__main__':
-    main()
