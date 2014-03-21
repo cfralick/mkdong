@@ -1,18 +1,16 @@
 mkdong
 ======
 
-A CLI utility to print dongs.  
-##cli usage:  
-```shell
-    $ python -m mkdong 5       
-```
+A CLI utility to print dongs.    
 
-##python interpreter invocation:  
+
+__usage:__
+```bash
+$ python -m mkdong 5       
+```
 
 ```python
-    >>> import mkdong     
-    >>> mkdong.dong(5)    
-    '( )/( )/////D'    
+>>> import mkdong     
+>>> mkdong.dong(5)    
+'( )/( )/////D'    
 ```
-
-
