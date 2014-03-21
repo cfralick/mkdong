@@ -3,6 +3,12 @@ mkdong
 
 A CLI utility to print dongs.    
 
+__installation:__  
+```bash
+$ git clone https://github.com/cfralick/mkdong.git  
+$ cd mkdong  
+$ python setup.py install  
+```    
 
 __usage:__
 ```bash
