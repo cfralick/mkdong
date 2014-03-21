@@ -4,4 +4,7 @@
 cli utility that makes dongs.
 """
 
-from mkdong import main as mkdong
+from mkdong import (
+    main,
+    mkdong as dong
+)
