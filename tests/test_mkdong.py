@@ -25,6 +25,9 @@ class MkdongTestCase(unittest.TestCase):
     def test_default_dong_is_dong(self):
         self.assertEqual(mkdong(1), self.default_dong)
     
+    def test_climaxing_dong_shows_load(self):
+        self.assertEqual(mkdong(1, True), self.default_dong + '~~~~')
+
     @unittest.expectedFailure
     def test_max_dong_length_is_MAXLEN(self):
         self.assertTrue(mkdong(self.maxlen))
@@ -41,13 +44,13 @@ class MkdongTestCase(unittest.TestCase):
     def test_non_int_dong_length_raises_type_error(self):
         with self.assertRaises(TypeError):
             mkdong('penis')
-
+    
     def test_superfluous_int_argument_raises_type_error(self):
         with self.assertRaises(TypeError):
-            mkdong(10, 20)
+            mkdong(10, None, 20)
 
     def test_superfluous_str_argument_raises_type_error(self):
         with self.assertRaises(TypeError):
-            mkdong(10, 'cock')
+            mkdong(10, None, 'cock')
 
 

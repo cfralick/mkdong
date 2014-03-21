@@ -19,7 +19,7 @@ BALLS = '( )/( )'
 HEAD = 'D'
 CLIMAX='~~~~'
 
-def mkdong(length, climax):
+def mkdong(length, climax=None):
     """Print a dong of ``length`` length."""
     if not isinstance(length, int):
         raise TypeError("error: %s is not a valid length" % length)
