@@ -23,14 +23,6 @@ CLIMAX='~~~~'
 
 def mkdong(length, climax=None):
     """Print a dong of ``length`` length."""
-    
-    if not isinstance(length, int):
-        raise TypeError("error: %s is not a valid length" % length)
-    elif length > MAXLEN:
-        raise ValueError("error: a %s\" dong is too big! "
-                         "cannot be longer than %s\"!" %
-                         (length, MAXLEN))
-    
     shaft = []
     for i in xrange(length):
         shaft.append('/')
@@ -42,7 +34,7 @@ def mkdong(length, climax=None):
     return ''.join(dong)
 
 
-def main():
+def parse_args():
     parser = argparse.ArgumentParser(
         description='Make a dong.',
         prog='mkdong',
@@ -68,10 +60,18 @@ def main():
     donglen = dong_args.length
     climax = dong_args.climax
     
+    if donglen > MAXLEN:
+        parser.error("error: a %s\" dong is too big! "
+                         "cannot be longer than %s\"!" %
+                         (donglen, MAXLEN))
+
+    return (donglen, climax,)
+
+
+def main():
+    donglen,climax = parse_args()
     try:
         dong = mkdong(donglen, climax)
-    except TypeError as fail:
-        sys.exit(str(fail))
     except ValueError as ronjeremy:
         sys.exit(str(ronjeremy))
     else:

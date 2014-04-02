@@ -1,6 +1,6 @@
 import unittest
 from mkdong.mkdong import mkdong, MAXLEN
-
+from argparse import ArgumentError
 
 class MkdongTestCase(unittest.TestCase):
 
@@ -28,19 +28,6 @@ class MkdongTestCase(unittest.TestCase):
     def test_climaxing_dong_shows_load(self):
         self.assertEqual(mkdong(1, True), self.default_dong + '~~~~')
 
-    @unittest.expectedFailure
-    def test_max_dong_length_is_MAXLEN(self):
-        self.assertTrue(mkdong(self.maxlen))
-        self.assertTrue(mkdong(self.dong_too_long))
-
-    def test_dong_too_long_raises_value_error(self):
-        with self.assertRaises(ValueError):
-            mkdong(self.dong_too_long)
-
-    def test_unspecified_dong_length_raises_type_error(self):
-        with self.assertRaises(TypeError):
-            mkdong()
-
     def test_non_int_dong_length_raises_type_error(self):
         with self.assertRaises(TypeError):
             mkdong('penis')
@@ -52,5 +39,3 @@ class MkdongTestCase(unittest.TestCase):
     def test_superfluous_str_argument_raises_type_error(self):
         with self.assertRaises(TypeError):
             mkdong(10, None, 'cock')
-
-
