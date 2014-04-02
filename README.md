@@ -2,7 +2,7 @@ mkdong
 ======
 
 A Python module for printing dongs.  
-_This module borrows heavily from https://github.com/mkdong.git_  
+_This module borrows heavily from https://github.com/jathanism/mkdong.git_  
 
 
 __installation:__  
