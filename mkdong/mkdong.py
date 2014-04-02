@@ -4,7 +4,7 @@ import sys
 import argparse
 
 """
-Makes dongs.
+Prints a dong of a specific length.
 """
 
 __author__ = 'Jathan McCollum, Mark Ellzey Thomas'
@@ -13,30 +13,22 @@ __email__ = 'jathan@gmail.com'
 __copyright__ = '2009-2013, Jathan McCollum'
 __version__ = '5.0'
 
-MAXLEN = os.environ.get('MEGADONG') or 40
 
 # static immutable penis parts
 BALLS = '( )/( )'
 HEAD = 'D'
 CLIMAX='~~~~'
 
+ENV_VAR_NAME = 'MEGADONG'
+DEFAULT_MAXLEN = 40
 
-def mkdong(length, climax=None):
-    """Print a dong of ``length`` length."""
-    shaft = []
-    for i in xrange(length):
-        shaft.append('/')
-    dong = [BALLS, ''.join(shaft), HEAD]
-    
-    if climax:
-        dong.append(CLIMAX)
 
-    return ''.join(dong)
+MAXLEN = os.environ.get(ENV_VAR_NAME) or DEFAULT_MAXLEN
 
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description='Make a dong.',
+        description='Prints a dong.',
         prog='mkdong',
         epilog='mkdong %s' % __version__
     )
@@ -48,7 +40,7 @@ def parse_args():
     parser.add_argument('-c', 
                         '--climax', 
                         action='store_true',
-                        help='make a climaxing dong')
+                        help='makes the dong climax')
 
     parser.add_argument('-v',
                         '--version',
@@ -66,6 +58,19 @@ def parse_args():
                          (donglen, MAXLEN))
 
     return (donglen, climax,)
+
+
+def mkdong(length, climax=None):
+    """Prints a dong of ``length`` length."""
+    shaft = []
+    for i in xrange(length):
+        shaft.append('/')
+    dong = [BALLS, ''.join(shaft), HEAD]
+    
+    if climax:
+        dong.append(CLIMAX)
+
+    return ''.join(dong)
 
 
 def main():
