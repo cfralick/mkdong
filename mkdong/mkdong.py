@@ -11,13 +11,15 @@ __author__ = 'Jathan McCollum, Mark Ellzey Thomas'
 __maintainer__ = 'Jathan McCollum'
 __email__ = 'jathan@gmail.com'
 __copyright__ = '2009-2013, Jathan McCollum'
-__version__ = '5.0'
+__version__ = '0.1.0'
 
 
 # static immutable penis parts
-BALLS = '( )/( )'
+BALL = '( )'
 HEAD = 'D'
-CLIMAX='~~~~'
+THIN = '='
+WIDE = '/'
+CLIMAX=' ~~~~'
 
 ENV_VAR_NAME = 'MEGADONG'
 DEFAULT_MAXLEN = 40
@@ -32,10 +34,16 @@ def parse_args():
         prog='mkdong',
         epilog='mkdong %s' % __version__
     )
+   
     parser.add_argument('length', 
                         metavar='l', 
                         type=int, 
                         help='the desired dong length')
+    
+    parser.add_argument('-w',
+                        '--wide',
+                        action='store_true',
+                        help='make a wide, thick dong')
     
     parser.add_argument('-c', 
                         '--climax', 
@@ -49,34 +57,47 @@ def parse_args():
                         help='print version and exit')
     
     dong_args = parser.parse_args()
-    donglen = dong_args.length
-    climax = dong_args.climax
-    
-    if donglen > MAXLEN:
+
+    if dong_args.length > MAXLEN:
         parser.error("error: a %s\" dong is too big! "
                          "cannot be longer than %s\"!" %
-                         (donglen, MAXLEN))
+                         (dong_args.length, MAXLEN))
 
-    return (donglen, climax,)
+    return (dong_args.length, dong_args.wide, dong_args.climax,)
 
 
-def mkdong(length, climax=None):
+def mkshaft(length, width):
+    w = WIDE if width else THIN
+    return _mk_dong_part(w, length, '')
+
+
+def mkballs(balls=2):
+    return _mk_dong_part(BALL, balls, '/')
+
+
+def _mk_dong_part(v, r, d):
+    return d.join([v for x in xrange(r)])
+
+
+def _mk_dong(b,s,h,c=None):
+    if c:
+        d = ''.join([b,s,h,CLIMAX])
+    else:
+        d = ''.join([b,s,h])
+    return d
+
+
+def mkdong(length, width, climax=None):
     """Prints a dong of ``length`` length."""
-    shaft = []
-    for i in xrange(length):
-        shaft.append('/')
-    dong = [BALLS, ''.join(shaft), HEAD]
-    
-    if climax:
-        dong.append(CLIMAX)
-
-    return ''.join(dong)
+    shaft = mkshaft(length, width)
+    balls = mkballs()
+    return _mk_dong(b=balls, s=shaft, h=HEAD, c=climax)    
 
 
 def main():
-    donglen,climax = parse_args()
+    length,width,climax = parse_args()
     try:
-        dong = mkdong(donglen, climax)
+        dong = mkdong(length=length, width=width, climax=climax)
     except ValueError as ronjeremy:
         sys.exit(str(ronjeremy))
     else:

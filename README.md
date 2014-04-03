@@ -20,14 +20,13 @@ $ python -m mkdong 5
 ```python
 >>> import mkdong     
 >>> mkdong.dong(5)    
-'( )/( )/////D'    
+'( )/( )=====D'    
 ```
 
 __help:__
 ```bash
 $ python -m mkdong -h
-
-usage: mkdong [-h] [-c] [-v] l
+usage: mkdong [-h] [-w] [-c] [-v] l
 
 Prints a dong.
 
@@ -36,6 +35,7 @@ positional arguments:
 
 optional arguments:
   -h, --help     show this help message and exit
+  -w, --wide     make a wide, thick dong
   -c, --climax   makes the dong climax
   -v, --version  print version and exit
 
