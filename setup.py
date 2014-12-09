@@ -25,7 +25,7 @@ with open('LICENSE') as f:
 
 setup(
     name='mkdong',
-    version='0.0.0',
+    version='0.0.1',
     description='A CLI utility to print dongs.',
     long_description=readme + '\n\n',
     author='Clint Fralick',
