@@ -8,10 +8,9 @@ Prints a dong of a specific length.
 """
 
 __author__ = 'Jathan McCollum, Mark Ellzey Thomas'
-__maintainer__ = 'Jathan McCollum'
-__email__ = 'jathan@gmail.com'
-__copyright__ = '2009-2013, Jathan McCollum'
-__version__ = '0.1.0'
+__maintainer__ = 'Clint Fralick'
+__email__ = 'cfralick@creeperengine.com'
+__version__ = '0.0.0'
 
 
 # static immutable penis parts

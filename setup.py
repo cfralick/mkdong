@@ -25,7 +25,7 @@ with open('LICENSE') as f:
 
 setup(
     name='mkdong',
-    version='0.0.1',
+    version='0.0.0',
     description='A CLI utility to print dongs.',
     long_description=readme + '\n\n',
     author='Clint Fralick',
@@ -41,7 +41,6 @@ setup(
     classifiers=(
         'Natural Language :: English',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
