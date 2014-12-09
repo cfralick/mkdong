@@ -39,5 +39,5 @@ optional arguments:
   -c, --climax   makes the dong climax
   -v, --version  print version and exit
 
-mkdong 0.1.0
+mkdong 0.0.0
 ```
