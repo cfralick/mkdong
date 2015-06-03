@@ -1,18 +1,18 @@
 mkdong
 ======
 
-A Python module for printing dongs.  
-_This module borrows heavily from https://github.com/jathanism/mkdong.git_  
+Prints dongs.
 
-
-__installation:__  
+Installation
+------------
 ```bash
-$ git clone https://github.com/cfralick/mkdong.git  
+$ git clone https://bitbucket.org/cfralick/mkdong.git  
 $ cd mkdong  
 $ python setup.py install  
 ```    
 
-__usage:__
+Usage
+-----
 ```bash
 $ python -m mkdong 5       
 ```
@@ -23,7 +23,8 @@ $ python -m mkdong 5
 '( )/( )=====D'    
 ```
 
-__help:__
+Help
+----
 ```bash
 $ python -m mkdong -h
 usage: mkdong [-h] [-w] [-c] [-v] l
