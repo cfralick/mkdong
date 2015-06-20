@@ -3,56 +3,105 @@
 import os
 import sys
 
-
 try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+    import setuptools
+except ImportError as err:
+    raise ImportError("It's your fault there's {}".format(err))
+
+from setuptools import setup, find_packages
+from setuptools.command.test import test as TestCommand
+from codecs import open
 
 
-if sys.argv[-1] == 'publish':
-    os.system('python setup.py sdist upload')
-    sys.exit()
+class Tox(TestCommand):
+    user_options = [('tox-args=', 'a', "Arguments to pass to tox")]
 
-packages = [
-    'mkdong',
-]
+    def initialize_options(self):
+        TestCommand.initialize_options(self)
+        self.tox_args = None
 
-requires = []
+    def finalize_options(self):
+        TestCommand.finalize_options(self)
+        self.test_args = []
+        self.test_suite = True
+
+    def run_tests(self):
+        # import here, cause outside the eggs aren't loaded
+        import tox
+        import shlex
+        args = self.tox_args
+        if args:
+            args = shlex.split(self.tox_args)
+        errno = tox.cmdline(args=args)
+        sys.exit(errno)
 
 
-with open('README.md') as f:
-    readme = f.read()
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
-with open('LICENSE') as f:
-    license = f.read()
+NAME = os.path.basename(BASE_DIR)
+
+LICENSE='BSD-2-Clause'
+
+AUTHOR='Jathan McCollum'
+
+AUTHOR_EMAIL='jathan@gmail.com'
+
+MAINTAINER='Clint Fralick'
+
+MAINTAINER_EMAIL='cfralick@creeperengine.com'
+
+URL='https://github.com/cfralick/mkdong'
+
+PACKAGES = find_packages(exclude=['docs', 'tests*'])
+
+EXTRAS_REQUIRE={'test': ['tox']}
+
+CUSTOM_COMMANDS={'test': Tox}
+
+KEYWORDS=('penis', 'dong', 'cli',)
+
+CLASSIFIERS=(
+    'Environment :: Console',
+    'Development Status :: 3 - Alpha',
+    'Intended Audience :: All',
+    'License :: OSI Approved :: BSD License',
+    'Natural Language :: English',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 2',
+    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.3'
+)
+
+ENTRY_POINTS = {
+    'console_scripts': [
+        'mkdong=mkdong.__main__:main'
+    ]
+}
+
+with open(os.path.join(BASE_DIR, 'VERSION'), encoding='utf-8') as version:
+    VERSION = version.read().strip()
+
+with open(os.path.join(BASE_DIR, 'DESCRIPTION.rst'), encoding='utf-8') as descr:
+    DESCRIPTION = descr.readline().strip()
+    LONG_DESCRIPTION = descr.read().strip()
 
 
 setup(
-    name='mkdong',
-    version='6.1',
-    description='A CLI utility to print dongs.',
-    long_description=readme + '\n\n',
-    author='Jathan McCollum, Clint Fralick',
-    author_email='jathan@gmail.com',
-    url='http://pantspooper.org',
-    packages=packages,
-    package_dir={'mkdong': 'mkdong'},
-    include_package_data=True,
-    dependency_links=[],
-    install_requires=[],
-    entry_points="""
-        [console_scripts]
-        mkdong=mkdong:main
-    """,
-    license=license,
-    zip_safe=False,
-    classifiers=(
-        'Natural Language :: English',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-
-    ),
+    name=NAME,
+    version=VERSION,
+    license=LICENSE,
+    author=AUTHOR,
+    author_email=AUTHOR_EMAIL,
+    maintainer=MAINTAINER,
+    maintainer_email=MAINTAINER_EMAIL,
+    description=DESCRIPTION,
+    long_description=LONG_DESCRIPTION,
+    keywords=KEYWORDS,
+    url=URL,
+    packages=PACKAGES,
+    extras_require=EXTRAS_REQUIRE,
+    cmdclass=CUSTOM_COMMANDS,
+    classifiers=CLASSIFIERS,
+    entry_points=ENTRY_POINTS
 )

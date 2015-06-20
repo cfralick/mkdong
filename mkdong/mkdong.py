@@ -74,7 +74,7 @@ def mkballs(balls=2):
 
 
 def _mk_dong_part(v, r, d):
-    return d.join([v for x in xrange(r)])
+    return d.join([v for x in range(r)])
 
 
 def _mk_dong(b, s, h, c=None):

@@ -32,18 +32,3 @@ class MkdongTestCase(unittest.TestCase):
 
     def test_climaxing_dong_shows_load(self):
         self.assertEqual(mkdong(1, False, True), self.default_dong + ' ~~~~')
-    
-    @unittest.skipIf(sys.version_info.minor == 6, "not supported in {}".format(sys.version))
-    def test_non_int_dong_length_raises_type_error(self):
-        with self.assertRaises(TypeError):
-            mkdong('penis', True)
-
-    @unittest.skipIf(sys.version_info.minor == 6, "not supported in {}".format(sys.version))
-    def test_superfluous_int_argument_raises_type_error(self):
-        with self.assertRaises(TypeError):
-            mkdong(10, False, False, 20)
-
-    @unittest.skipIf(sys.version_info.minor == 6, "not supported in {}".format(sys.version))
-    def test_superfluous_str_argument_raises_type_error(self):
-        with self.assertRaises(TypeError):
-            mkdong(10, False, False, 'cock')

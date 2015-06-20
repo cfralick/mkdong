@@ -1,0 +1,4 @@
+include LICENSE
+include VERSION
+include *.ini *.py *.rst *.cfg *.txt
+recursive-include mkdong tests *.py
