@@ -13,10 +13,13 @@ from mkdong import Dong, DongTooLong
 
 
 def main():
+    base_path = os.path.dirname(os.path.dirname(__file__))
+
+    version=open(os.path.join(base_path, 'VERSION')).read().strip()
 
     parser = argparse.ArgumentParser(
-            description='Prints a dong.', prog=os.path.dirname(__file__),
-            usage='%(prog)s <options> length', epilog='%(prog)s 6.1')
+            description=Dong.__doc__, prog=os.path.basename(base_path),
+            usage='%(prog)s <options> length [outfile]', epilog='%(prog)s ' + version)
 
     parser.add_argument(
             'length', type=int, default=0, nargs='?',
@@ -25,7 +28,7 @@ def main():
     parser.add_argument(
             'outfile', type=argparse.FileType('w'), 
             default=sys.stdout, nargs='?',
-            help='save the dong to the specified file')
+            help='save the dong to <outfile>. Optional')
 
     parser.add_argument(
             '-c', '--climax', action='count', default=0, 
@@ -37,7 +40,7 @@ def main():
 
     parser.add_argument(
             '-v', '--version', 
-            action='version', version='%(prog)s 6.1')
+            action='version', version='%(prog)s ' + version)
 
     parser.set_defaults(dong=Dong.mkdong, put=Dong.print_dong)
     args = parser.parse_args()

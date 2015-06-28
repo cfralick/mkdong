@@ -14,7 +14,7 @@ class DongTooLong(ValueError):
 
 
 class Dong(object):
-    """Static immutable penis parts"""
+    """Prints a dong"""
     WAD = '~'
     BALLS = '( )/( )'
     HEAD = 'D'
