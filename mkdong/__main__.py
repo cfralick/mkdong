@@ -9,7 +9,7 @@ import argparse
 import sys
 import os
 import mkdong
-from mkdong import Dong, DongTooLong
+from mkdong.mkdong import Dong, DongTooLong
 
 
 def main():
