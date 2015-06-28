@@ -83,7 +83,7 @@ ENTRY_POINTS = {
 }
 
 with open(os.path.join(BASE_DIR, 'VERSION'), encoding='utf-8') as version:
-    VERSION = version.read().strip()
+    VERSION = version.read().strip().replace('-', '.')
 
 with open(os.path.join(BASE_DIR, 'DESCRIPTION.rst'), encoding='utf-8') as descr:
     DESCRIPTION = descr.readline().strip()
