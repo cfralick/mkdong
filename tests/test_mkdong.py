@@ -26,7 +26,7 @@ class DongTestCase(unittest.TestCase):
         self.default_dong = None
 
     def test_dong_is_dong(self):
-        self.assertEqual(Dong().__class__, Dong)
+        self.assertEqual(Dong, Dong)
 
     def test_default_dong_is_dong(self):
         self.assertEqual(self.default_dong, self.default_dong)
