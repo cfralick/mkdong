@@ -4,6 +4,9 @@ mkdong
 
 A command-line utility for printing dongs.
 
+.. image:: https://travis-ci.org/cfralick/mkdong.svg?branch=develop
+    :target: https://travis-ci.org/cfralick/mkdong 
+
 
 Highlights
 ^^^^^^^^^^
