@@ -54,7 +54,10 @@ URL='https://github.com/cfralick/mkdong'
 
 PACKAGES = find_packages(exclude=['docs', 'tests*'])
 
-EXTRAS_REQUIRE={'test': ['tox']}
+EXTRAS_REQUIRE={
+    'test': ['tox'],
+    'dev': ['tox']
+}
 
 CUSTOM_COMMANDS={'test': Tox}
 
@@ -100,8 +103,10 @@ setup(
     keywords=KEYWORDS,
     url=URL,
     packages=PACKAGES,
+    tests_require=['tox','virtualenv'],
     extras_require=EXTRAS_REQUIRE,
     cmdclass=CUSTOM_COMMANDS,
     classifiers=CLASSIFIERS,
+    include_package_data=True,
     entry_points=ENTRY_POINTS
 )
