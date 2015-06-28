@@ -20,37 +20,44 @@ class Dong(object):
     HEAD = 'D'
     WIDTH=('-','=','/','[]',)
 
-    @classmethod
-    def mkdong(cls, args):
+    def __init__(self, args):
+        self.length = args.length
+        self.width = args.width
+        self.climax = args.climax
+        self.outfile = args.outfile
+
+    def mkpart(self, part, times):
+        return [part for _ in xrange(0, times)]
+
+    def mkdong(self):
         """Creates a dong of ``length`` length."""
         
         from itertools import chain 
         
-        def part(char, times):
-            """Assembles penis part."""
-            return [char for _ in xrange(0, times)]
+        shaft = self.mkpart(self.WIDTH[self.width], self.length)
+        head = self.mkpart(self.HEAD, 1)
+        load = self.mkpart(self.WAD, self.climax)
+        balls = self.mkpart(self.BALLS, 1)
         
-        shaft = part(cls.WIDTH[args.width], args.length)
-        head = part(cls.HEAD, 1)
-        load = part(cls.WAD, args.climax)
-        balls = part(cls.BALLS, 1)
-        
-        return "".join(chain(balls, shaft, head, load))
-        
-    @classmethod
-    def print_dong(cls, dong, outfile):
+        dong = "".join(chain(balls, shaft, head, load))
+       
+        self.print_dong(dong)
+
+    @staticmethod
+    def terminal_width():
+        """get the width of the current console."""
+        import fcntl, termios, struct
+        _,w,_,_ = struct.unpack('HHHH',
+            fcntl.ioctl(0, termios.TIOCGWINSZ,
+            struct.pack('HHHH', 0, 0, 0, 0)))
+        return w
+    
+
+    def print_dong(self, dong):
         """Prints a dong to specified output."""
         
-        def terminal_width():
-            """get the width of the current console."""
-            import fcntl, termios, struct
-            _,w,_,_ = struct.unpack('HHHH',
-                fcntl.ioctl(0, termios.TIOCGWINSZ,
-                struct.pack('HHHH', 0, 0, 0, 0)))
-            return w
-    
-        term_width = terminal_width()
+        term_width = Dong.terminal_width()
         if term_width > len(dong):
-            outfile.write(dong + "\n")
+            self.outfile.write(dong + "\n")
         else:
             raise DongTooLong(DongTooLong.__doc__)

@@ -39,11 +39,11 @@ def main():
             '-v', '--version', 
             action='version', version='%(prog)s 6.1')
 
-    parser.set_defaults(dong=Dong.mkdong, put=Dong.print_dong)
+    parser.set_defaults(dong=Dong)
     args = parser.parse_args()
     
     try:
-        args.put(args.dong(args), args.outfile)
+        args.dong(args).mkdong()
     except DongTooLong as toolong:
         sys.exit(str(toolong))
 
