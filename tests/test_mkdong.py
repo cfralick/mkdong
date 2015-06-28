@@ -35,13 +35,15 @@ class DongTestCase(unittest.TestCase):
         self.assertEqual(Dong.HEAD, 'D')
     
     def test_dong_has_two_balls(self):
-        self.assertTrue(True)
+        self.assertEqual(Dong.BALLS.split('/')[0], '( )')
    
     def test_dong_is_thin_by_default(self):
         self.assertEqual('-', Dong.WIDTH[0])
     
     def test_dong_climaxes_when_told(self):
-        self.assertTrue(True)
+        args = Namespace(outfile=None, length=0, climax=5, width=0)
+        dong = Dong(args)
+        self.assertEqual("".join(dong.mkpart(Dong.WAD, dong.climax)), '~~~~~')
 
     def test_dong_cums_harder_when_told(self):
         self.assertTrue(True)
