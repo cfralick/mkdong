@@ -8,11 +8,12 @@ from __future__ import absolute_import
 import argparse
 import sys
 import os
-import mkdong
-from mkdong.mkdong import Dong, DongTooLong
+from mkdong import Dong, DongTooLong
 
 
 def main():
+    """Run mkdong."""
+    
     base_path = os.path.dirname(os.path.dirname(__file__))
 
     version=open(os.path.join(base_path, 'VERSION')).read().strip()
@@ -49,6 +50,7 @@ def main():
         args.dong(args).mkdong()
     except DongTooLong as toolong:
         sys.exit(str(toolong))
+
 
 if __name__ == '__main__':
     main()
