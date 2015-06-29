@@ -12,7 +12,7 @@ except ImportError:
 import sys
 import argparse
 import mkdong
-from mkdong.mkdong import Dong, DongTooLong
+from mkdong.dong import Dong, DongTooLong
 from argparse import ArgumentError, Namespace
 
 
@@ -29,21 +29,21 @@ class DongTestCase(unittest.TestCase):
 
     def test_dong_is_dong(self):
         args = Namespace(outfile=None, length=0, climax=0, width=0)
-        self.assertIsInstance(Dong(args), Dong)
+        self.assertIsInstance(Dong(**vars(args)), Dong)
 
     def test_dong_has_head(self):
-        self.assertEqual(Dong.HEAD, 'D')
+        self.assertEqual(Dong.DEFAULTS['head'], 'D')
     
     def test_dong_has_two_balls(self):
-        self.assertEqual(Dong.BALLS.split('/')[0], '( )')
+        self.assertEqual(Dong.DEFAULTS['nad'], '( )')
    
     def test_dong_is_thin_by_default(self):
-        self.assertEqual('-', Dong.WIDTH[0])
+        self.assertEqual('-', Dong.WIDTHS[0])
     
     def test_dong_climaxes_when_told(self):
         args = Namespace(outfile=None, length=0, climax=5, width=0)
-        dong = Dong(args)
-        self.assertEqual("".join(dong.mkpart(Dong.WAD, dong.climax)), '~~~~~')
+        dong = Dong(**vars(args))
+        self.assertTrue(Dong(climax=4).__str__().endswith('~~~'))
 
     def test_dong_cums_harder_when_told(self):
         self.assertTrue(True)

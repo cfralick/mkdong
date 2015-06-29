@@ -12,13 +12,13 @@ Highlights
 ^^^^^^^^^^
 
 type-safe
-  mkdong prints dongs only, and all dongs are instances of ``mkdong.mkdong.Dong``
+  mkdong prints dongs only, and all dongs are instances of ``mkdong.dong.Dong``
 
 configurable
   mkdong prints dongs of *any* length [#one]_ and climaxes of *any* magnitude. It also supports 3 distinct girths
   
 enterprise-ready
-  mkdong is thoroughly torture-tested and proven print dongs in the harshest conditions. Python versions 2.5, 2.6, 2.7, 3.1, and 3.4 are supported.
+  mkdong is thoroughly torture-tested and proven print dongs in the harshest conditions. Python versions 2.5, 2.6, 2.7, 3.2, 3.3, and 3.4 are supported.
 
 
 
@@ -30,8 +30,8 @@ Install
   # with pip
   $ pip install mkdong
   
-  # or with setuptools
-  $ clone https://bitbucket.org/cfralick/mkdong.git  
+  # or with git & setuptools
+  $ git clone https://bitbucket.org/cfralick/mkdong.git  
   $ cd mkdong && python setup.py install
 
 
@@ -59,15 +59,12 @@ Usage
 Options
 -------
 
---length                print a dong with a shaft of the specified length
---wide                  print a thin, insipid dong of underwhelming girth 
---climax                increase the magnitude of the climax
---help                  show this help
---version               show version number and exit
+-w, --wide                  print a thin, insipid dong of underwhelming girth 
+-c, --climax                increase the magnitude of the climax
+-h, --help                  show this help
+-v, --version               show version number and exit
 
 Notes
 =====
-
-.. rubric:: Footnotes
 
 .. [#one] Lengths greater than **100** are not supported.
