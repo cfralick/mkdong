@@ -1,7 +1,9 @@
 # -*- coding: utf8 -*-
 
 """
-mkdong main function
+module mkdong.__main__
+
+main function
 """
 
 from __future__ import absolute_import
